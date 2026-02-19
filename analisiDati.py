@@ -33,17 +33,14 @@ def carica_dati():
 def aggiorna_interfaccia():
     conteggi, inizio, fine, totale = carica_dati()
     
-    # Aggiorna Testi
     dpg.set_value("testo_inizio", f"Primo evento: {inizio}")
     dpg.set_value("testo_fine", f"Ultimo evento: {fine}")
     dpg.set_value("testo_totale", f"Tempo totale: {totale}")
     
-    # Aggiorna Istogramma
     labels = list(conteggi.keys())
     valori = [float(v) for v in conteggi.values()]
     dpg.set_value("serie_barre", [labels, valori])
 
-# Setup Dear PyGui
 dpg.create_context()
 
 with dpg.window(label="Analisi Dati Semaforo", width=600, height=500):
@@ -70,8 +67,8 @@ dpg.create_viewport(title='Dashboard Analisi Arduino', width=620, height=540)
 dpg.setup_dearpygui()
 dpg.show_viewport()
 
-# Caricamento iniziale
 aggiorna_interfaccia()
 
 dpg.start_dearpygui()
+
 dpg.destroy_context()
